@@ -123,28 +123,36 @@ delete enemy when is out of canvas.
   ```
   
 ## Task
-TBD, copied from chloe and need to know the priorities:
 
-Main - buildDom
-Main - buildSplashScreen
-Main - addEventListener
+```
+Main - build splashscreen
+Main - buildAddEventListener
 Main - buildGameScreen
 Main - buildGameOverScreen
+
 Game - buildCanvas
-Game - clearCanvas
+Game - startLoop
+Game . checkCollisions
+Game . clearCanvas
 Game - updateCanvas
 Game - drawCanvas
 Game - setGameOver
-Game - collision
-Game - addEventListener
-movingSquare - create
-movingSquare - goDown
-staticSquare - store
-staticSquare - remove if full line
-Game - checkOverFlow
-movingSquare - setDirection
-movingSquare - Rush
-movingSquare - SelectRandomSize
+
+Player - buildCanvas
+Player - ctx
+Player - Size
+Player - x and y
+Player - direction
+Player - speed
+
+Enemy - buildCanvas
+Enemy - ctx
+Enemy - Size
+Enemy - x and y
+Enemy - direction
+Enemy - speed
+Enemy - deleteEnemyIfOutOfCanvas
+```
 
 ## Links
 
