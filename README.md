@@ -25,6 +25,7 @@ Adding a name in the beggining and during the game window
 Add extra elements that you can interact with such as gas which can give you more points or other advantatges.
 Add sounds and background music
 Add more speed while the game is advancing.
+Add a hall of fame
 
 
 ## Data structure
@@ -42,23 +43,85 @@ buildGameOverScreen(){
 } 
 ```
 
+#game.js
+```
+Game(){
+  this.canvas;
+}
 
+Game.prototype.startLoop(){
+}
+
+Game.prototype.checkCollisions{
+}
+
+Game.prototype.clearCanvas = function(){
+}
+
+Game.prototype.updateCanvas = function(){
+}
+
+Game.prototype.drawCanvas = function(){ 
+}
+
+Game.prototype.setGameOver = function(){
+}
+```
+
+#Player.js
+```
+function Player (canvas, x, size){
+canvas
+ctx 
+size
+x
+y
+direction
+speed
+}
+```
+
+#Enemy.js
+```
+function Enemy (canvas, y, speed){
+canvas
+ctx
+size
+x
+y
+speed
+delete enemy when is out of canvas.
+
+
+```
 
 
 
 ## States y States Transitions
-Definition of the different states and their transition (transition functions)
 
-- splashScreen
-  New game
+#- splashScreen ()
+  ```
   
-- gameScreen
-
-- gameoverScreen
-  - Game over
-  - Start over
-
-
+  - Build splash screen
+  - AddEventListener (Start new game)
+  
+  ```
+  
+ #- StartGame  ()
+  ```
+  
+  - Build game screen
+  - gameStart ()
+  
+  ```
+  
+  #- gameOverScreen ()
+  ```
+  
+  - Build game over screen ()
+  - Add event listener (Re-start)  
+  ```
+  
 ## Task
 TBD, copied from chloe and need to know the priorities:
 
