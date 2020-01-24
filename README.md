@@ -1,23 +1,30 @@
-# RACE TO FREEDOM
+# F*CK DA POLICE
 
 ## Description
-aquest es un joc que blablabla
+
+f*CK THE POLICE is a game where the driver is trying to scape from a bank and see how many seconds can he or she be without being caught.
+The game is over when a plice car touches the vehicle of the driver and has been caught.
 
 ## MVP 
-MVP definition, deliverables.
+Basic funcionalities:
 
-funcionalitats basiques que té el joc
+Player movility: right and left.
 
-que es el minim. pj, mort, esquiva? punts eetc
+Police cars going from the top to the bottom.
+
+Game Over: When the player car and the police car collides.
+
+Include a background in loop.
+
+
 
 ## Backlog
 
-Tot el que no s necessari del mvp. Que farà del meu joc algo millor. Punts extras, canvis que no tenen relació.
-Features que son 0 necessàries per el MVP
-
-Score, name of the player, adding objects which makes you better.
-
-TBD
+Adding a scoreboard
+Adding a name in the beggining and during the game window
+Add extra elements that you can interact with such as gas which can give you more points or other advantatges.
+Add sounds and background music
+Add more speed while the game is advancing.
 
 
 ## Data structure
