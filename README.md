@@ -29,16 +29,18 @@ Add more speed while the game is advancing.
 
 ## Data structure
 
-main.js
+#main.js
 
-``` buildSplashScreen(){
+``` 
+buildSplashScreen(){
 }
 
 buildGameScreen(){
 }
 
 buildGameOverScreen(){
-} ```
+} 
+```
 
 
 
