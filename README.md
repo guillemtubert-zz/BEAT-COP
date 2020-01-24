@@ -31,14 +31,14 @@ Add more speed while the game is advancing.
 
 main.js
 
-```buildSplashScreen(){
+``` buildSplashScreen(){
 }
 
 buildGameScreen(){
 }
 
 buildGameOverScreen(){
-}```
+} ```
 
 
 
