@@ -28,17 +28,17 @@ Add more speed while the game is advancing.
 
 
 ## Data structure
-Classes and methods definition.
 
-player, que té. Moviment, draw, update, shoot, jump.
-enemy, que fa etc.
-balas, un objecte creat noms per ell.
+main.js
 
-main js
+```buildSplashScreen(){
+}
 
-game js
+buildGameScreen(){
+}
 
-enemyPolice js
+buildGameOverScreen(){
+}```
 
 
 
