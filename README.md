@@ -16,6 +16,10 @@ Game Over: When the player car and the police car collides.
 
 Include a background in loop.
 
+Button to start the game
+
+Button to re-start the game once you got caught.
+
 
 
 ## Backlog
