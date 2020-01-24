@@ -3,8 +3,10 @@
 ## Description
 aquest es un joc que blablabla
 
-## MVP (DOM - CANVAS)
+## MVP 
 MVP definition, deliverables.
+
+funcionalitats basiques que té el joc
 
 que es el minim. pj, mort, esquiva? punts eetc
 
