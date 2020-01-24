@@ -21,10 +21,15 @@ Include a background in loop.
 ## Backlog
 
 Adding a scoreboard
+
 Adding a name in the beggining and during the game window
+
 Add extra elements that you can interact with such as gas which can give you more points or other advantatges.
+
 Add sounds and background music
+
 Add more speed while the game is advancing.
+
 Add a hall of fame
 
 
