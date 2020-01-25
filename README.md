@@ -58,6 +58,22 @@ Game(){
   this.canvas;
 }
 
+ player, e
+ 
+ nemies, 
+ 
+ gameIsOver
+ 
+ ameScreen  
+ 
+ additional 
+ 
+ methods: 
+ 
+ start(), c
+ 
+ reateObstacles() 
+
 Game.prototype.startLoop(){
 }
 
@@ -87,6 +103,10 @@ x
 y
 direction
 speed
+draw()
+, move(), 
+collidedWithEnemies(), 
+handleScreenLimits()
 }
 ```
 
@@ -100,6 +120,8 @@ x
 y
 speed
 delete enemy when is out of canvas.
+draw
+move
 
 
 ```
