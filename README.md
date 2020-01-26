@@ -18,7 +18,7 @@ Include a background in loop.
 
 Button to start the game
 
-Button to re-start the game once you got caught.
+Button to re-start the game once you got caught...
 
 
 
