@@ -1,44 +1,142 @@
-"use stric";
+"use strict";
 
 function Game() {
-    this.canvas=null;
-    this.ctx = null;
+  this.canvas = null;
+  this.ctx = null;
 
-    this.enemies = []; // posem els enemics en random
-    this.player = null;
+  this.enemies = []; // push enemiy objects at random
+  this.player = null;
 
-    this.gameIsOver = false;
-    this.gameScreen = null;
+  this.gameIsOver = false;
+  this.gameScreen = null;
+  this.score = 0;
+  this.lines = [];
+  this.grass=null;
 }
 
-//INICIEM EL JOC I OBRIM CANVAS
+// Initialize the game and canvas
+Game.prototype.start = function() {
+  this.canvasContainer = document.querySelector(".canvas-container");
+  this.canvas = this.canvasContainer.querySelector("canvas");
+  this.ctx = this.canvas.getContext("2d");
 
-Game.prototype.start = function () {
-this.canvasContainer = document. querySelector(".canvas-container");
-this.canvas = this.canvasContainer.querySelector("canvas");
-this.ctx = this.canvas.getContext("2d");
+  this.livesElement = this.gameScreen.querySelector(".lives .value");
+  this.scoreElement = this.gameScreen.querySelector(".score .value");
 
-var containerWidth = this.canvasContainer.offsetWidth;
-var containerHeight = this.canvasContainer.offsetHeight;
+  var containerWidth = this.canvasContainer.offsetWidth;
+  var containerHeight = this.canvasContainer.offsetHeight;
 
-this.canvas.setAttribute("width", containerWidth);
-this.canvas.setAttribute("height", containerHeight);
+  this.canvas.setAttribute("width", containerWidth);
+  this.canvas.setAttribute("height", containerHeight);
 
-//AQUÍ VOLEM CREAR AL PERSONATGE
-this.player  = new Player (this.canvas, 3, 100)
+  var sixth = containerWidth/6;
+  this.lines.push(sixth - sixth%10)
+  this.lines.push(sixth*3 - containerWidth/16)
+  this.lines.push(sixth*5 - containerWidth/7.5)
 
-// afegim les direccions
-this.handleKeyDown = function(event){
+  // Create the player
+  this.player = new Player(this.canvas, 3, 100);
+
+  // Add keydown event listeners
+  this.handleKeyDown = function(event) {
     if (event.key === "ArrowLeft") {
-        this.player.setDirection("left");
-    } else if (event.key === "ArrowRight"){
-        this.player.setDirection("rigth");
+      console.log("LEFT");
+      this.player.setDirection("left");
+    } else if (event.key === "ArrowRight") {
+      console.log("RIGHT");
+      this.player.setDirection("right");
     }
-}
+  };
 
-// This = Game instance
-window.addEventListener("keydown", this.handleKeyDown.bind(this));
+  // this = game instance
+  window.addEventListener("keydown", this.handleKeyDown.bind(this));
 
-// COMENCEM EL LOOP DEL JOC
-this.startLoop();
-}
+  // Start the game initially
+  this.startLoop();
+};
+
+Game.prototype.startLoop = function() {
+  var loop = function() {
+    // 1. UPDATE THE STATE (game, player, enemy)
+
+    // 0. Player was created already
+
+    // 1. Create enemies randomly
+
+    this.score++;
+    this.scoreElement.innerHTML = this.score;
+
+    if (Math.random() > 0.98) {
+      var randomNumber = Math.floor(Math.random()*this.lines.length);
+      var randomLine = this.lines[randomNumber];
+      // var randomX = this.canvas.width * Math.random();
+      var newEnemy = new Enemy(this.canvas, randomLine, 5);
+
+      this.enemies.push(newEnemy);
+    }
+
+    // 2. Check if the player had collisions with enemies (check all of the enemies)
+    this.checkCollisions();
+
+    // 3. Update the player and check if he is colliding the screen
+    this.player.handleScreenCollision();
+    this.player.updatePosition();
+    // 4. Update the existing enemies (move them)
+    // 5. Check if the enemies our out of the screen
+    // [x, x, x ,x ]
+
+    this.enemies = this.enemies.filter(function(enemyObj) {
+      enemyObj.updatePosition(); // 4
+      return enemyObj.isInsideScreen(); // 5
+    });
+
+    // 2. CLEAR THE CANVAS
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // 3. UPDATE THE CANVAS (DRAW)
+    // 1. Draw the player
+    this.player.draw();
+
+    // 2. Draw all of the enemies
+    this.enemies.forEach(function(enemyObj) {
+      enemyObj.draw();
+    });
+
+    // 4. TERMINATE THE LOOP IF THE GAME IS OVER
+    if (!this.gameIsOver) {
+      requestAnimationFrame(loop);
+    }
+  }.bind(this);
+
+  // requestAnimationFrame(loop);
+  loop();
+};
+
+Game.prototype.updateGameStats = function() {};
+
+Game.prototype.gameOver = function() {
+  this.gameIsOver = true;
+
+  this.startOver(); // the callback function ( gameOver ) passed from main()
+};
+
+Game.prototype.removeGameScreen = function() {};
+
+Game.prototype.checkCollisions = function() {
+  this.enemies.forEach(function(enemy) {
+    if (this.player.didCollide(enemy)) {
+      this.player.removeLife();
+
+      // move the enemy out of the screen
+      enemy.y = 0 - enemy.size;
+
+      if (this.player.lives === 0) {
+        this.gameOver();
+      }
+    }
+  }, this);
+};
+
+Game.prototype.passGameOverCallback = function(gameOverFunc) {
+  this.startOver = gameOverFunc;
+};

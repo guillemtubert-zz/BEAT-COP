@@ -42,7 +42,11 @@ function main() {
     var gameScreen = buildDom(`
     <main class="game container">
     <header>
-        <div class="score">
+      <div class="lives">
+        <span class="label">You Only Live Once</span>
+        <span class="value"></span>
+      </div>
+      <div class="score">
         <span class="label">Score:</span>
         <span class="value"></span>
       </div>
@@ -65,12 +69,12 @@ function main() {
   //
   // GAME OVER SCREEN
   function createGameOverScreen(score) {
-    gameOverScreen = buildDom (`
-      <main>
-        <h1>YOU GOT CAUGTH</h1>
-        <p>Your score: TBD</p>
-        <button>Restart</button>
-      </main>
+    gameOverScreen = buildDom(`
+    <main>
+      <h1>Game over</h1>
+      <p>YOU HAVE BEEN CAUGHT! YOU GOT <span>${score}</span> POINTS!</p>
+      <button>Restart</button>
+    </main>
     `);
 
     document.body.appendChild(gameOverScreen);
@@ -78,11 +82,11 @@ function main() {
     var button = gameOverScreen.querySelector("button");
 
     button.addEventListener("click", startGame);
-
   }
 
   function removeGameOverScreen() {
-    if (gameOverScreen !== undefined){ // if it exists saved in a variable
+    if (gameOverScreen !== undefined) {
+      // if it exists saved in a variable
       gameOverScreen.remove();
     }
   }
@@ -91,7 +95,6 @@ function main() {
   // SETTING GAME STATE
   function startGame() {
     removeSplashScreen();
-
     removeGameOverScreen();
 
     game = new Game();
@@ -106,7 +109,7 @@ function main() {
 
   function gameOver() {
     removeGameScreen();
-    createGameOverScreen();
+    createGameOverScreen(); // <--
 
     console.log("GAME OVER IN MAIN");
   }
