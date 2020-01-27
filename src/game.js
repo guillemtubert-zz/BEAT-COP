@@ -92,7 +92,7 @@ Game.prototype.startLoop = function() {
     this.score++;
     this.scoreElement.innerHTML = this.score;
 
-    if (Math.random() > 0.98) {
+    if (Math.random() > 0.99) {
       var randomNumber = Math.floor(Math.random()*this.lines.length);
       var randomLine = this.lines[randomNumber];
       // var randomX = this.canvas.width * Math.random();
