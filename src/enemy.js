@@ -14,10 +14,10 @@ function Enemy(canvas, x, speed) {
 }
 
 Enemy.prototype.draw = function() {
-  this.ctx.fillStyle = "#FF6F27";
+  this.ctx.fillStyle = "FF6F27";
 
   // fillRect(x, y, width, height)
-  this.ctx.fillRect(this.x, this.y, this.size, this.size);
+  this.ctx.drawImage(this.enemyImage, this.x, this.y, 80, 120);
 };
 
 Enemy.prototype.updatePosition = function() {
@@ -26,11 +26,4 @@ Enemy.prototype.updatePosition = function() {
 
 Enemy.prototype.isInsideScreen = function() {
   return this.y + this.size > 0;
-};
-
-
-Enemy.prototype.draw = function() {
-  this.ctx.fillStyle = “#FF6F27";
-  // fillRect(x, y, width, height)
-  this.ctx.drawImage(this.enemyImage, this.x, this.y, this.width, this.height);
 };

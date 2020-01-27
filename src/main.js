@@ -32,6 +32,7 @@ function main() {
     });
   }
 
+// PROVA
   function removeSplashScreen() {
     splashScreen.remove(); // remove() is an HTML method that removes the element entirely
   }

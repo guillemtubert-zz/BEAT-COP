@@ -4,7 +4,7 @@ function Player(canvas, lives, size) {
   this.canvas = canvas;
   this.ctx = canvas.getContext("2d");
 
-  this.lives = 1;
+  this.lives = 10000;
   this.size = size;
 
   this.x = canvas.width / 2;
@@ -12,6 +12,9 @@ function Player(canvas, lives, size) {
 
   this.direction = 0;
   this.speed = 5;
+
+  this.playerImage = new Image();
+  this.playerImage.src = "./racer.png";
 }
 
 Player.prototype.setDirection = function(direction) {
@@ -68,8 +71,8 @@ Player.prototype.removeLife = function() {
 };
 
 Player.prototype.draw = function() {
-  this.ctx.fillStyle = "black";
+  this.ctx.fillStyle = "FF6F27";
 
   // fillRect(x, y, width, height)
-  this.ctx.fillRect(this.x, this.y, 60, 100);
+  this.ctx.drawImage(this.playerImage,this.x, this.y, 60, 100);
 };

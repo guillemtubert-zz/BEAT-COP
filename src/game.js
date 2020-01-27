@@ -14,6 +14,32 @@ function Game() {
   this.grass=null;
 }
 
+//canvas background
+
+var img = new Image();
+img.src = './carretera.png'
+
+var backgroundImage = {
+  img: img,
+  y: 0,
+  speed: 10,
+
+
+  move: function(canvas) {
+    this.y += this.speed;
+    this.y %= canvas.height;
+  },
+
+  draw: function(canvas, ctx) {
+    ctx.drawImage(this.img, 0, this.y);
+    if (this.speed < 0) {
+      ctx.drawImage(this.img, 0, this.y + this.img.height, this.img.width, this.img.height);
+    } else {
+      ctx.drawImage(this.img, 0, this.y - canvas.height, this.img.width, this.img.height);
+    }
+  },
+};
+
 // Initialize the game and canvas
 Game.prototype.start = function() {
   this.canvasContainer = document.querySelector(".canvas-container");
@@ -26,8 +52,8 @@ Game.prototype.start = function() {
   var containerWidth = this.canvasContainer.offsetWidth;
   var containerHeight = this.canvasContainer.offsetHeight;
 
-  this.canvas.setAttribute("width", containerWidth);
-  this.canvas.setAttribute("height", containerHeight);
+  this.canvas.setAttribute("width", 787);
+  this.canvas.setAttribute("height", 787);
 
   var sixth = containerWidth/6;
   this.lines.push(sixth - sixth%10)
@@ -75,6 +101,8 @@ Game.prototype.startLoop = function() {
       this.enemies.push(newEnemy);
     }
 
+    backgroundImage.move(this.canvas);
+
     // 2. Check if the player had collisions with enemies (check all of the enemies)
     this.checkCollisions();
 
@@ -94,6 +122,7 @@ Game.prototype.startLoop = function() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     // 3. UPDATE THE CANVAS (DRAW)
+    backgroundImage.draw(this.canvas,this.ctx);
     // 1. Draw the player
     this.player.draw();
 
