@@ -9,23 +9,14 @@ html {
     box-sizing: inherit;
   }
   
-  body {
+  main {
+    height: 100%;
     margin: 0;
     padding: 0;
-    background-color: pink;
+    /* background-color: pink; */
+    background-image: url("https://i.ytimg.com/vi/YbHukMD2sgA/maxresdefault.jpg");
+    background-size: contain;
   }
-
-  /*    CANVAS     */
-  
-  .canvas-container{
-    border: 1px solid black;
-    background-size: contain; 
-   } 
-
-   canvas img {
-     border: 1px solid red;
-     background-size: contain; 
-   }
 
 
   /* ---- typography ---- */
@@ -46,15 +37,17 @@ html {
   html,
   body {
     height: 100%;
+    color: white;
+    text-align: center;
   }
   
   .container {
     margin: 0 20px;
   }
   
-  @media (min-width: 768px) {
+  @media (min-width: 787px) {
     .container {
-      max-width: 728px; /* Resizes the container to 728px for large screens */
+      max-width: 787px; /* Resizes the container to 728px for large screens */
       margin: 0 auto;
     }
   }
@@ -93,3 +86,26 @@ html {
   .game .canvas-container {
     flex: 1;
   }
+
+  .mainbackground{    /* HEADER  */
+    background-color: cadetblue;
+  }
+
+  button {
+    background-image: url("https://cdn.imgbin.com/18/5/20/imgbin-purple-button-pink-tube-illustration-Zyua6WFYhjPtmKLFYreBE90Fz.jpg");
+    background-position: center;
+    border: 1px black;
+    border-radius: 30px;
+    color: white;
+    width: 300px;
+    height: 100px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 60px;
+    position:absolute;
+    transition: .5s ease;
+    top: 80%;
+    left: 40%;
+  } 

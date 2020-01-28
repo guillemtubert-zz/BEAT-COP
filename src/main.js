@@ -19,8 +19,8 @@ function main() {
   function createSplashScreen() {
     splashScreen = buildDom(`
     <main>
-      <h1>F*CK DA POLICE</h1>
-      <button>Start</button>
+      <h1></h1>
+      <button>RUN</button>
     </main>`);
 
     document.body.appendChild(splashScreen);

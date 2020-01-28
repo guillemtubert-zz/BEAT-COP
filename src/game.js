@@ -11,7 +11,8 @@ function Game() {
   this.gameScreen = null;
   this.score = 0;
   this.lines = [];
-  this.grass=null;
+  this.img = new Image();
+  this.img.src = "./background.jpg";
 }
 
 //canvas background
@@ -52,16 +53,16 @@ Game.prototype.start = function() {
   var containerWidth = this.canvasContainer.offsetWidth;
   var containerHeight = this.canvasContainer.offsetHeight;
 
-  this.canvas.setAttribute("width", 787);
-  this.canvas.setAttribute("height", 787);
+  this.canvas.setAttribute("width", this.canvasContainer.offsetWidth);
+  this.canvas.setAttribute("height", this.canvasContainer.offsetHeight);
 
   var sixth = containerWidth/6;
-  this.lines.push(sixth - sixth%10)
-  this.lines.push(sixth*3 - containerWidth/16)
-  this.lines.push(sixth*5 - containerWidth/7.5)
+  this.lines.push(sixth +17)
+  this.lines.push(sixth*3 - containerWidth/20)
+  this.lines.push(sixth*5 - containerWidth/9)
 
   // Create the player
-  this.player = new Player(this.canvas, 3, 100);
+  this.player = new Player(this.canvas, 1, 156, 306);
 
   // Add keydown event listeners
   this.handleKeyDown = function(event) {
@@ -88,7 +89,6 @@ Game.prototype.startLoop = function() {
     // 0. Player was created already
 
     // 1. Create enemies randomly
-
     this.score++;
     this.scoreElement.innerHTML = this.score;
 
@@ -136,6 +136,7 @@ Game.prototype.startLoop = function() {
       requestAnimationFrame(loop);
     }
   }.bind(this);
+  
 
   // requestAnimationFrame(loop);
   loop();
