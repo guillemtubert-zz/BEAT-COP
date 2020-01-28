@@ -33,7 +33,7 @@ Player.prototype.didCollide = function(enemy) {
 
   var enemyLeft = enemy.x + enemy.width;
   var enemyRight = enemy.x + enemy.width;
-  var enemyTop = enemy.y + 400;
+  var enemyTop = enemy.y*3;
   var enemyBottom = enemy.y + enemy.height;
 
   var crossRight = enemyLeft <= playerRight && enemyRight >= playerLeft;

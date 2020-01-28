@@ -62,7 +62,7 @@ Game.prototype.start = function() {
   this.lines.push(sixth*5 - containerWidth/9)
 
   // Create the player
-  this.player = new Player(this.canvas, 1, 156, 306);
+  this.player = new Player(this.canvas, 1 , 156, 306);
 
   // Add keydown event listeners
   this.handleKeyDown = function(event) {
