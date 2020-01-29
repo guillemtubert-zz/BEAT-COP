@@ -9,7 +9,7 @@ function Player(canvas, lives, width, height) {
   this.height = height;
 
   this.x = canvas.width / 2 -25;
-  this.y = 650;
+  this.y = 600;
 
   this.direction = 0;
   this.speed = 10;
@@ -69,7 +69,7 @@ Player.prototype.handleScreenCollision = function() {
 
 Player.prototype.removeLife = function() {
   this.lives -= 1;
-};
+}
 
 Player.prototype.draw = function() {
   this.ctx.fillStyle = "FF6F27";

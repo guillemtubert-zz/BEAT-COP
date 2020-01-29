@@ -15,7 +15,7 @@ html {
     padding: 0;
     /* background-color: pink; */
     background-image: url("https://i.ytimg.com/vi/YbHukMD2sgA/maxresdefault.jpg");
-    background-size: contain;
+    background-size: cover;
   }
 
 
@@ -47,7 +47,8 @@ html {
   
   @media (min-width: 787px) {
     .container {
-      max-width: 787px; /* Resizes the container to 728px for large screens */
+      max-width: 787px;
+      max-height: 787px; /* Resizes the container to 728px for large screens */
       margin: 0 auto;
     }
   }

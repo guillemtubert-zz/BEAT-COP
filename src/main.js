@@ -16,10 +16,20 @@ function main() {
   var gameOverScreen;
 
   // SPLASH SCREEN
-  function createSplashScreen() {
+  function createSplashScreen() { // NAME ENTRY. PROB DELETE
+  
     splashScreen = buildDom(`
     <main>
       <h1></h1>
+      <h2 class="gameinstructions"> GAME INSTRUCTIONS <h2>
+      <H3 class=" textinstructions"> Use arrow keys to move left and right <h3>
+      <div id="register-name">
+                    <form>
+                        <label>First, insert your gangsta name:</label>
+                        <input id="username" type="text" placeholder="My gangsta name" value="">
+                    </form>
+                </div>
+                <div>
       <button>RUN</button>
     </main>`);
 
@@ -93,6 +103,8 @@ function main() {
   }
 
   //
+
+
   // SETTING GAME STATE
   function startGame() {
     removeSplashScreen();
@@ -103,14 +115,15 @@ function main() {
 
     // Start the game
     game.start();
-    game.passGameOverCallback(gameOver);
+    game.passGameOverCallback(function (){
+      gameOver(game.score)});
 
     // End the game
   }
 
-  function gameOver() {
+  function gameOver(score) {
     removeGameScreen();
-    createGameOverScreen(); // <--
+    createGameOverScreen(score); // <--
 
     console.log("GAME OVER IN MAIN");
   }

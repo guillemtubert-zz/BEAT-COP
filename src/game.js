@@ -13,12 +13,13 @@ function Game() {
   this.lines = [];
   this.img = new Image();
   this.img.src = "./background.jpg";
+  this.bonus = [];
 }
 
 //canvas background
 
 var img = new Image();
-img.src = './carretera.png'
+img.src = './carretera.png';
 
 var backgroundImage = {
   img: img,
@@ -101,6 +102,15 @@ Game.prototype.startLoop = function() {
       this.enemies.push(newEnemy);
     }
 
+    if (this.score%1000===0){
+      var randomNumber = Math.floor(Math.random()*this.lines.length);
+      var randomLine = this.lines[randomNumber];
+      // var randomX = this.canvas.width * Math.random();
+      var newBonus = new Bonus(this.canvas, randomLine, 5);
+
+      this.bonus.push(newBonus);
+    }
+
     backgroundImage.move(this.canvas);
 
     // 2. Check if the player had collisions with enemies (check all of the enemies)
@@ -118,6 +128,11 @@ Game.prototype.startLoop = function() {
       return enemyObj.isInsideScreen(); // 5
     });
 
+    this.bonus = this.bonus.filter(function(bonusObj) {
+      bonusObj.updatePosition(); // 4
+      return bonusObj.isInsideScreen(); // 5
+    });
+
     // 2. CLEAR THE CANVAS
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -131,6 +146,10 @@ Game.prototype.startLoop = function() {
       enemyObj.draw();
     });
 
+    this.bonus.forEach(function(bonusObj) {
+      bonusObj.draw();
+    });
+
     // 4. TERMINATE THE LOOP IF THE GAME IS OVER
     if (!this.gameIsOver) {
       requestAnimationFrame(loop);
@@ -141,6 +160,10 @@ Game.prototype.startLoop = function() {
   // requestAnimationFrame(loop);
   loop();
 };
+
+Game.prototype.addScore = function(){
+  this.score+= 200;
+}
 
 Game.prototype.updateGameStats = function() {};
 
@@ -164,6 +187,14 @@ Game.prototype.checkCollisions = function() {
         this.gameOver();
       }
     }
+  },this)
+    this.bonus.forEach(function(bonusObject) {
+      if (this.player.didCollide(bonusObject)) {
+        this.addScore();
+  
+        // move the bonus out of the screen
+        bonusObject.y = 0 - bonusObject.size;
+      }
   }, this);
 };
 
