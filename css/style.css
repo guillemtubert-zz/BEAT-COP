@@ -2,6 +2,7 @@
 
 html {
     box-sizing: border-box;
+    overflow: hidden;
   }
   *,
   *:before,
@@ -26,6 +27,7 @@ html {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 147%;
+    margin: 0;
   }
   
   p {
@@ -110,3 +112,8 @@ html {
     top: 80%;
     left: 40%;
   } 
+
+  h1{
+    margin: 0;
+    padding: 40px;
+  }
