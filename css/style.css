@@ -118,3 +118,18 @@ html {
     margin: 0;
     padding: 40px;
   }
+
+  #scoretable thead {
+    border: 2px dashed black;
+}
+
+#scoretable th {
+    padding: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#scoretable td {
+    padding: 10px;
+    text-align: center;
+}

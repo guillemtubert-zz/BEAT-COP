@@ -1,6 +1,7 @@
 "use strict";
 
-function Game() {
+function Game(name) {
+  this.name = name;
   this.canvas = null;
   this.ctx = null;
 
@@ -16,8 +17,10 @@ function Game() {
   this.bonus = [];
   this.bonusSound = new Audio ("sounds/heboi.wav");
   this.crashSound = new Audio ("sounds/crash.wav");
+  this.boostSound = new Audio ("sounds/shine.wav");
   this.bMusic = new Audio ("sounds/bmusic.wav");
   this.loopCount = 1919;
+  this.boost = [];
 }
 
 //canvas background
@@ -100,7 +103,7 @@ Game.prototype.startLoop = function() {
     if(this.loopCount%1920 ===0){
     
     this.bMusic.currentTime = 0;
-    this.bMusic.volume = 0.4;
+    this.bMusic.volume = 0.3;
     this.bMusic.play();
     }
     // 0. Player was created already
@@ -127,6 +130,15 @@ Game.prototype.startLoop = function() {
       this.bonus.push(newBonus);
     }
 
+    if (this.score%700===0){
+      var randomNumber = Math.floor(Math.random()*this.lines.length);
+      var randomLine = this.lines[randomNumber];
+      // var randomX = this.canvas.width * Math.random();
+      var newBoost = new Boost(this.canvas, randomLine, 5);
+
+      this.bonus.push(newBoost);
+    }
+
     backgroundImage.move(this.canvas);
 
     // 2. Check if the player had collisions with enemies (check all of the enemies)
@@ -149,6 +161,11 @@ Game.prototype.startLoop = function() {
       return bonusObj.isInsideScreen(); // 5
     });
 
+    this.boost = this.boost.filter(function(boostObj) {
+      boostObj.updatePosition(); // 4
+      return boostObj.isInsideScreen(); // 5
+    });
+
     // 2. CLEAR THE CANVAS
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -166,6 +183,10 @@ Game.prototype.startLoop = function() {
       bonusObj.draw();
     });
 
+    this.boost.forEach(function(boostObj) {
+      boostObj.draw();
+    });
+
     // 4. TERMINATE THE LOOP IF THE GAME IS OVER
     if (!this.gameIsOver) {
       requestAnimationFrame(loop);
@@ -177,6 +198,10 @@ Game.prototype.startLoop = function() {
 
 Game.prototype.addScore = function(){
   this.score+= 200;
+}
+
+Game.prototype.speedUp = function(){ //mirar aqui siespot
+  Player.speed+= 5;
 }
 
 Game.prototype.updateGameStats = function() {};
@@ -211,13 +236,25 @@ Game.prototype.checkCollisions = function() {
         this.addScore();
 
         this.bonusSound.currentTime = 0;
-        this.bonusSound.volume = 0.7;
+        this.bonusSound.volume = 0.9;
         this.bonusSound.play();
   
         // move the bonus out of the screen
         bonusObject.y = 0 - bonusObject.size;
       }
   }, this);
+  this.boost.forEach(function(boostObject) {
+    if (this.player.didCollide(boostObject)) {
+      Player.speedUp();
+
+      this.boostSound.currentTime = 0;
+      this.boostSound.volume = 0.9;
+      this.boostSound.play();
+
+      // move the boost out of the screen
+      boostObject.y = 0 - boostObject.size;
+    }
+}, this)
 };
 
 Game.prototype.passGameOverCallback = function(gameOverFunc) {

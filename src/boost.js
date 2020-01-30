@@ -11,19 +11,20 @@ function Boost(canvas, x, speed) {
   this.x = x;
   this.y = 0 - this.height;
   this.speed = speed;
-  this.speedImage = new Image();
-  this.speedImage.src = "imgs/bonus.png";
+  this.boostImage = new Image();
+  this.boostImage.src = "imgs/boost.png";
 }
 
-Speed.prototype.draw = function() {
+Boost.prototype.draw = function() {
     // fillRect(x, y, width, height)
-    this.ctx.drawImage(this.speedImage, this.x, this.y, this.width, this.height);
+    this.ctx.drawImage(this.boostImage, this.x, this.y, this.width, this.height);
+    console.log("DRAWING BOOST")
   };
   
-Speed.prototype.updatePosition = function() {
+Boost.prototype.updatePosition = function() {
     this.y = this.y + this.speed;
   };
   
-Speed.prototype.isInsideScreen = function() {
+Boost.prototype.isInsideScreen = function() {
     return this.y + this.height > 0;
   };

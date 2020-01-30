@@ -14,6 +14,7 @@ function main() {
   var game;
   var splashScreen;
   var gameOverScreen;
+  var name;
 
   // SPLASH SCREEN
   function createSplashScreen() { // NAME ENTRY. PROB DELETE
@@ -38,7 +39,11 @@ function main() {
     var startButton = splashScreen.querySelector("button");
 
     startButton.addEventListener("click", function() {
-      startGame();
+      name = splashScreen.querySelector('#username').value;
+            if(name === '') {
+                name = 'LASAGNA'
+            }
+      startGame(name);
     });
   }
 
@@ -79,11 +84,27 @@ function main() {
 
   //
   // GAME OVER SCREEN
-  function createGameOverScreen(score) {
+  function createGameOverScreen(score, name) {
     gameOverScreen = buildDom(`
     <main>
       <h1>Game over</h1>
       <p>YOU HAVE BEEN CAUGHT! YOU GOT <span>${score}</span> POINTS!</p>
+      <table id="scoretable">
+      <thead>
+          <tr>
+              <th>Name</th>
+              <th>Score</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr><td id='name1'></td><td id='score1'></td></tr>
+          <tr><td id='name2'></td><td id='score2'></td></tr>
+          <tr><td id='name3'></td><td id='score3'></td></tr>
+          <tr><td id='name4'></td><td id='score4'></td></tr>
+          <tr><td id='name5'></td><td id='score5'></td></tr>
+         
+      </tbody>
+  </table>
       <button>Restart</button>
     </main>
     `);
@@ -92,7 +113,42 @@ function main() {
 
     var button = gameOverScreen.querySelector("button");
 
-    button.addEventListener("click", startGame);
+    button.addEventListener("click", function() {
+      startGame(name);
+  });
+   // get previous score
+    let previousScore = JSON.parse(localStorage.getItem("score"));
+    if (!previousScore) {
+      previousScore = [];
+    }
+
+    // UPDATE THE SCORE
+    const newScore = { name, score };
+    previousScore.push(newScore);
+
+    // SET THE SCORE BACK TO LOCAL STORAGE
+    const updatedScoreStr = JSON.stringify(previousScore);
+    localStorage.setItem("score", updatedScoreStr);
+
+   // ordena per score
+        previousScore.sort(function(a,b){
+            return b.score - a.score;
+        });
+        console.log("scoreboard", previousScore);
+
+        //prints into html the scores to the screen
+        for(var i = 0; i < 10; i++) {
+          var playersName = gameOverScreen.querySelector("#name" + (i+1));
+          var playersScore = gameOverScreen.querySelector("#score" + (i+1));
+          if(previousScore[i]) {
+              playersName.innerHTML = previousScore[i].name;
+              playersScore.innerHTML = previousScore[i].score + ' points';
+          } else {
+              playersName.innerHTML = '';
+              playersScore.innerHTML = '';
+          }            
+      }
+
   }
 
   function removeGameOverScreen() {
@@ -106,7 +162,7 @@ function main() {
 
 
   // SETTING GAME STATE
-  function startGame() {
+  function startGame(name) {
     removeSplashScreen();
     removeGameOverScreen();
 
@@ -123,7 +179,7 @@ function main() {
 
   function gameOver(score) {
     removeGameScreen();
-    createGameOverScreen(score); // <--
+    createGameOverScreen(score,name); // <--
 
     console.log("GAME OVER IN MAIN");
   }
