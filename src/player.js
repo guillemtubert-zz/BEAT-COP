@@ -15,7 +15,7 @@ function Player(canvas, lives, width, height) {
   this.speed = 10;
 
   this.playerImage = new Image();
-  this.playerImage.src = "./racer.png";
+  this.playerImage.src = "imgs/racer.png";
 }
 
 Player.prototype.setDirection = function(direction) {

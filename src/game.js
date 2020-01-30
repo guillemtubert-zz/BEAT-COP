@@ -12,14 +12,14 @@ function Game() {
   this.score = 0;
   this.lines = [];
   this.img = new Image();
-  this.img.src = "./background.jpg";
+  this.img.src = "imgs/background.jpg";
   this.bonus = [];
 }
 
 //canvas background
 
 var img = new Image();
-img.src = './carretera.png';
+img.src = "imgs/carretera.png";
 
 var backgroundImage = {
   img: img,

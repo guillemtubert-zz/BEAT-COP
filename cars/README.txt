@@ -1,1 +1,0 @@
-This is a collection of cars used in my first game Road To Rage (available on Google Play).  Feel free to use them in any of your projects (with or without modifications).  I just ask that you link to my website tmdstudios.wordpress.com

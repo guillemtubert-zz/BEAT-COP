@@ -12,7 +12,7 @@ function Enemy(canvas, x, speed) {
   this.y = 0 - this.height;
   this.speed = speed;
   this.enemyImage = new Image();
-  this.enemyImage.src = "./police.png";
+  this.enemyImage.src = "imgs/police.png";
 }
 
 Enemy.prototype.draw = function() {

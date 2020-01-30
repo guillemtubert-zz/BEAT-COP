@@ -12,7 +12,7 @@ function Bonus(canvas, x, speed) {
   this.y = 0 - this.height;
   this.speed = speed;
   this.bonusImage = new Image();
-  this.bonusImage.src = "./bonus.png";
+  this.bonusImage.src = "imgs/bonus.png";
 }
 
 Bonus.prototype.draw = function() {
