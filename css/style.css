@@ -52,6 +52,7 @@ html {
       max-width: 787px;
       max-height: 787px; /* Resizes the container to 728px for large screens */
       margin: 0 auto;
+      margin-top: 10px;
     }
   }
   

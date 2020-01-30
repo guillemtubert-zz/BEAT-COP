@@ -12,14 +12,16 @@ function Game() {
   this.score = 0;
   this.lines = [];
   this.img = new Image();
-  this.img.src = "imgs/background.jpg";
+  this.img.src = "./background.jpg";
   this.bonus = [];
+  this.bonusSound = new Audio ("sounds/heboi.wav");
+  this.crashSound = new Audio ("sounds/crash.wav")
 }
 
 //canvas background
 
 var img = new Image();
-img.src = "imgs/carretera.png";
+img.src = 'imgs/carretera.png';
 
 var backgroundImage = {
   img: img,
@@ -179,6 +181,9 @@ Game.prototype.checkCollisions = function() {
   this.enemies.forEach(function(enemy) {
     if (this.player.didCollide(enemy)) {
       this.player.removeLife();
+        this.crashSound.currentTime = 0;
+        this.crashSound.volume = 0.5;
+        this.crashSound.play();
 
       // move the enemy out of the screen
       enemy.y = 0 - enemy.size;
@@ -191,6 +196,10 @@ Game.prototype.checkCollisions = function() {
     this.bonus.forEach(function(bonusObject) {
       if (this.player.didCollide(bonusObject)) {
         this.addScore();
+
+        this.bonusSound.currentTime = 0;
+        this.bonusSound.volume = 0.7;
+        this.bonusSound.play();
   
         // move the bonus out of the screen
         bonusObject.y = 0 - bonusObject.size;
