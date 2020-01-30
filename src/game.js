@@ -16,7 +16,8 @@ function Game() {
   this.bonus = [];
   this.bonusSound = new Audio ("sounds/heboi.wav");
   this.crashSound = new Audio ("sounds/crash.wav");
-  this.bMusic = new Audio ("sounds/bmusic.wav")
+  this.bMusic = new Audio ("sounds/bmusic.wav");
+  this.loopCount = 1919;
 }
 
 //canvas background
@@ -49,9 +50,7 @@ var backgroundImage = {
 Game.prototype.start = function() {
 
 
-  this.bMusic.currentTime = 0;
-  this.bMusic.volume = 0.7;
-  this.bMusic.play();
+  
 
 
   this.canvasContainer = document.querySelector(".canvas-container");
@@ -96,7 +95,14 @@ Game.prototype.start = function() {
 Game.prototype.startLoop = function() {
   var loop = function() {
     // 1. UPDATE THE STATE (game, player, enemy)
+    this.loopCount++;
 
+    if(this.loopCount%1920 ===0){
+    
+    this.bMusic.currentTime = 0;
+    this.bMusic.volume = 0.4;
+    this.bMusic.play();
+    }
     // 0. Player was created already
 
     // 1. Create enemies randomly
