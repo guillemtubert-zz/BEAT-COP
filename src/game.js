@@ -136,7 +136,7 @@ Game.prototype.startLoop = function() {
       // var randomX = this.canvas.width * Math.random();
       var newBoost = new Boost(this.canvas, randomLine, 5);
 
-      this.bonus.push(newBoost);
+      this.boost.push(newBoost);
     }
 
     backgroundImage.move(this.canvas);
@@ -201,7 +201,7 @@ Game.prototype.addScore = function(){
 }
 
 Game.prototype.speedUp = function(){ //mirar aqui siespot
-  Player.speed+= 5;
+  this.player.speed+= 2;
 }
 
 Game.prototype.updateGameStats = function() {};
@@ -245,7 +245,7 @@ Game.prototype.checkCollisions = function() {
   }, this);
   this.boost.forEach(function(boostObject) {
     if (this.player.didCollide(boostObject)) {
-      Player.speedUp();
+      this.speedUp();
 
       this.boostSound.currentTime = 0;
       this.boostSound.volume = 0.9;
