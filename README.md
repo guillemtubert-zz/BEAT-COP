@@ -1,8 +1,8 @@
-# F*CK DA POLICE
+# BEAT COP
 
 ## Description
 
-f*CK THE POLICE is a game where the driver is trying to scape from a bank and see how many seconds can he or she be without being caught.
+BEAT COP is a game where the driver is trying to scape from a bank and see how many seconds can he or she be without being caught.
 The game is over when a plice car touches the vehicle of the driver and has been caught.
 
 ## MVP 
