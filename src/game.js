@@ -15,7 +15,8 @@ function Game() {
   this.img.src = "./background.jpg";
   this.bonus = [];
   this.bonusSound = new Audio ("sounds/heboi.wav");
-  this.crashSound = new Audio ("sounds/crash.wav")
+  this.crashSound = new Audio ("sounds/crash.wav");
+  this.bMusic = new Audio ("sounds/bmusic.wav")
 }
 
 //canvas background
@@ -46,6 +47,13 @@ var backgroundImage = {
 
 // Initialize the game and canvas
 Game.prototype.start = function() {
+
+
+  this.bMusic.currentTime = 0;
+  this.bMusic.volume = 0.7;
+  this.bMusic.play();
+
+
   this.canvasContainer = document.querySelector(".canvas-container");
   this.canvas = this.canvasContainer.querySelector("canvas");
   this.ctx = this.canvas.getContext("2d");
@@ -75,7 +83,7 @@ Game.prototype.start = function() {
     } else if (event.key === "ArrowRight") {
       console.log("RIGHT");
       this.player.setDirection("right");
-    }
+    } 
   };
 
   // this = game instance
@@ -157,8 +165,6 @@ Game.prototype.startLoop = function() {
       requestAnimationFrame(loop);
     }
   }.bind(this);
-  
-
   // requestAnimationFrame(loop);
   loop();
 };
@@ -170,6 +176,7 @@ Game.prototype.addScore = function(){
 Game.prototype.updateGameStats = function() {};
 
 Game.prototype.gameOver = function() {
+  this.bMusic.currentTime = 1000;
   this.gameIsOver = true;
 
   this.startOver(); // the callback function ( gameOver ) passed from main()
@@ -182,7 +189,7 @@ Game.prototype.checkCollisions = function() {
     if (this.player.didCollide(enemy)) {
       this.player.removeLife();
         this.crashSound.currentTime = 0;
-        this.crashSound.volume = 0.5;
+        this.crashSound.volume = 0.4;
         this.crashSound.play();
 
       // move the enemy out of the screen
