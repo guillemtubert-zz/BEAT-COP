@@ -120,9 +120,7 @@ html {
   }
   
   #scoretable {
-    border: 5px solid black ;
-    margin-left: 565px;
-    margin-top: 30px;
+    margin: 60px auto;
     background-color: rgb(237, 67, 144);
     font-size: 27px;
     border-radius: 30px;
