@@ -21,6 +21,7 @@ function Game(name) {
   this.bMusic = new Audio ("sounds/bmusic.wav");
   this.loopCount = 1919;
   this.boost = [];
+  this.freeLines = [true, true, true];
 }
 
 //canvas background
@@ -115,10 +116,20 @@ Game.prototype.startLoop = function() {
     if (Math.random() > 0.99) {
       var randomNumber = Math.floor(Math.random()*this.lines.length);
       var randomLine = this.lines[randomNumber];
-      // var randomX = this.canvas.width * Math.random();
-      var newEnemy = new Enemy(this.canvas, randomLine, 5);
+      var lineIsFree = this.freeLines[randomNumber];
 
-      this.enemies.push(newEnemy);
+      if(lineIsFree){
+      // var randomX = this.canvas.width * Math.random();
+        var newEnemy = new Enemy(this.canvas, randomLine, 5);
+
+       this.enemies.push(newEnemy);
+       this.freeLines[randomNumber]=false;
+
+       setTimeout(function(){
+        this.freeLines[randomNumber]=true;
+
+       }.bind(this),500)
+      }
     }
 
     if (this.score%1000===0){
