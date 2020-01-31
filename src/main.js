@@ -22,15 +22,14 @@ function main() {
     splashScreen = buildDom(`
     <main>
       <h1></h1>
-      <h2 class="gameinstructions"> GAME INSTRUCTIONS <h2>
-      <H3 class=" textinstructions"> Use arrow keys to move left and right <h3>
+      <div class="firstback">
       <div id="register-name">
                     <form>
-                        <label>First, insert your gangsta name:</label>
-                        <input id="username" type="text" placeholder="My gangsta name" value="">
+                        <label>Please, insert your gangsta name:</label>
+                        <input id="username" type="text" placeholder="      My gangsta name" value="">
                     </form>
                 </div>
-                <div>
+                </div>
       <button>RUN</button>
     </main>`);
 
@@ -86,7 +85,7 @@ function main() {
   // GAME OVER SCREEN
   function createGameOverScreen(score, name) {
     gameOverScreen = buildDom(`
-    <main>
+    <main id="gameoverfinal">
       <h1>Game over</h1>
       <p>YOU HAVE BEEN CAUGHT! YOU GOT <span>${score}</span> POINTS!</p>
       <table id="scoretable">

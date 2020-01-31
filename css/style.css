@@ -110,7 +110,7 @@ html {
     font-size: 60px;
     position:absolute;
     transition: .5s ease;
-    top: 80%;
+    top: 82%;
     left: 40%;
   } 
 
@@ -120,11 +120,12 @@ html {
   }
   
   #scoretable {
-    border: 1px solid white ;
-    margin-left: 50%;
-    margin-top: 10%;
-    background-color: pink;
+    border: 5px solid black ;
+    margin-left: 565px;
+    margin-top: 30px;
+    background-color: rgb(237, 67, 144);
     font-size: 27px;
+    border-radius: 30px;
   }
 
 #scoretable thead {
@@ -141,3 +142,37 @@ html {
     padding: 10px;
     text-align: center;
 }
+
+/* .firstback{
+  background-image: url("../imgs/56789.jpg");
+  background-repeat: inherit;
+  width: 400px;
+  height: 190px;
+  border-radius: 30px;
+  display: inline-block;
+} */
+
+#username{
+  width: 300px;
+  height: 50px;
+  font-size: 27px;
+}
+
+#register-name form {
+  display: flex;
+  flex-direction: column;
+  align-items: center
+  ;
+}
+
+#register-name label {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+#gameoverfinal h1, #gameoverfinal p{
+  text-shadow: 7px 7px black;
+  font-size: 200%;
+} 
+
+
