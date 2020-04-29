@@ -195,7 +195,7 @@ Enemy - deleteEnemyIfOutOfCanvas
 ### Git
 URls for the project repo and deploy
 [Link Repo](https://github.com/guillemtubert/project1-race)
-[Link Deploy](http://github.com) TBD
+[Link Deploy](https://guillemtubert.github.io/project1-race/)
 
 
 ### Slides
